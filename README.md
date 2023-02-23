@@ -8,7 +8,7 @@ The purpose of this program is to use Sprout Socials API to more directly and dy
 Posts metric data for the afternoon of 5/5/2021 aren't being returned when requested. 5/5/2021 (entire day) was excluded from historical data.
 
 ## Helper Functions
-Below contains a brief of each helper function with their intended purpose.
+Below contains a brief description of each helper function with their intended purpose.
 
 **get_customer_id:** Uses the provided API key to determine the customer_id. This ID is needed for the URL for all subsequent API calls.
 
