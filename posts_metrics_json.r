@@ -10,7 +10,7 @@ paste0("{
     ,\"created_time\"
   ],
   \"filters\":[
-    \"customer_profile_id.eq(",profile_list,")\"
+    \"customer_profile_id.eq(",customer_list,")\"
     ,\"created_time.in(",start,"...",end,")\"
   ],
   \"metrics\":[

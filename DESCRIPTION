@@ -1,0 +1,11 @@
+Package: spRout
+Title: Use Sprout Socials API to more directly and dynamically pull in social network data
+Version: 0.0.0.9000
+Authors@R: 
+    person("Sade", "Chessidy", , "first.last@example.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: The purpose of this program is to use Sprout Socials API to more directly and dynamically pull in member social network data. The program currently pulls both post and profile metric data, however it can be expanded in the future to pull in a lot more.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
