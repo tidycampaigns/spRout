@@ -4,7 +4,16 @@
 \alias{get_content_data}
 \title{get_content_data}
 \usage{
-get_content_data(token, customer_id, customer_list, seq, type, start, end)
+get_content_data(
+  token,
+  customer_id,
+  customer_list,
+  page,
+  type,
+  start,
+  end,
+  total_pages = FALSE
+)
 }
 \arguments{
 \item{token}{formatted API token}
@@ -13,13 +22,13 @@ get_content_data(token, customer_id, customer_list, seq, type, start, end)
 
 \item{customer_list}{list of profile_ids for all accounts, used in json payload}
 
+\item{page}{page number for data to pull, used in json payload}
+
 \item{type}{whether you're pulling profiles or posts data}
 
 \item{start}{start date, used in json payload}
 
 \item{end}{end date, used in json payload}
-
-\item{page}{page number for data to pull, used in json payload}
 
 \item{total_pages}{option to also return the total number of pages of data for looping purposes. Defaults to FALSE}
 }
