@@ -1,24 +1,24 @@
 # Sprout Social API Sync
-last update: 4/29/2022
+last update: 3/21/2023
 
 ## Purpose
 The purpose of this program is to use Sprout Socials API to more directly and dynamically pull in member social network data. The program currently pulls both post and profile metric data, however it can be expanded in the future to pull in a lot more. [API Documentation](https://api.sproutsocial.com/docs/)
 
 ## Known Issues
-Posts metric data for the afternoon of 5/5/2021 aren't being returned when requested. 5/5/2021 (entire day) was excluded from historical data.
+Posts metric data for the afternoon of 5/5/2021 aren't being returned when requested. Might want to exclude the whole day if you're pulling historical data.
 
 ## Helper Functions
 Below contains a brief description of each helper function with their intended purpose.
 
 **get_customer_id:** Uses the provided API key to determine the customer_id. This ID is needed for the URL for all subsequent API calls.
 
-**get_raw_data:** Returns raw JSON data. Uses the metrics JSON files as the body of the request. Can be used to either posts or profile metrics. Written to be as type agnostic as possible.
+**get_customer_list:** Pulls the list of profile_ids for all accounts to use in the body of future requests.
 
-**get_content_data:** Calls get_raw_data() and returns data contents of the raw JSON response. Used when looping through pages of data.
+**get_content_data:** Returns data contents of the raw JSON response for one page. Uses the metrics JSON files as the body of the request. Can be used for either posts or profile metrics. Written to be as type agnostic as possible.
 
-**build_table:** Uses get_raw_data and get_contents_data to determine how many pages of data exist, acquire all data, and join back profile names and network types (e.g. Facebook, Twitter, Instagram). Handles peculiarities within posts and profile data.
+**get_content_data_all:** Uses get_contents_data to determine how many pages of data exist, acquire all data, and join back profile names and network types (e.g. Facebook, Twitter, Instagram). Handles peculiarities within posts and profile data.
 
-**missing_columns:** Pulls in a list of the existing columns to determine whether new data is missing columns that the existing data has, or if new data has new columns that the existing data doesn't have.
+~~**missing_columns:** Pulls in a list of the existing columns to determine whether new data is missing columns that the existing data has, or if new data has new columns that the existing data doesn't have.~~
 
 ## JSON files
 In order to build the body of the API request dynamically, two files were created: posts_metrics_json.r and profiles_metrics_json.r. This allows the program to fill in social network profile id's and dates with inputs from both the user and previously run API calls.
