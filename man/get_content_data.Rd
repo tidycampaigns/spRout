@@ -5,7 +5,6 @@
 \title{get_content_data}
 \usage{
 get_content_data(
-  token,
   customer_id,
   customer_list,
   page,
@@ -16,8 +15,6 @@ get_content_data(
 )
 }
 \arguments{
-\item{token}{formatted API token}
-
 \item{customer_id}{customer_id returned from get_customer_id function, used in json payload}
 
 \item{customer_list}{list of profile_ids for all accounts, used in json payload}
@@ -33,5 +30,5 @@ get_content_data(
 \item{total_pages}{option to also return the total number of pages of data for looping purposes. Defaults to FALSE}
 }
 \description{
-Return contents of API call for one page worth of data
+Return contents of API call for one page worth of data. Uses global api_token created by sprout_auth()
 }

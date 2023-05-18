@@ -1,17 +1,13 @@
 #' @title get_customer_id
-#' @description Determine a members customer_id which is needed for future API calls
-#' 
-#' @param token API key
+#' @description Determine a members customer_id which is needed for future API calls. Uses global api_token created by sprout_auth()
 #' 
 #' @export
 #' @import dplyr
 #' @import httr
-get_customer_id <- function(token){
-  
-  api_token <- paste0("Bearer ",token)
+get_customer_id <- function(){
   
   client_url <- "https://api.sproutsocial.com/v1/metadata/client"
-  client <- GET(client_url, add_headers("Authorization" = api_token)) %>% content()
+  client <- GET(client_url, add_headers("Authorization" = api_sprout)) %>% content()
   
   client %>% 
     data.frame() %>% 

@@ -1,9 +1,20 @@
 #' @title get_content_data_all
-#' @description  Determines how many pages of data exist, pulls it all in as a singular table and joins back profile names and types
-get_content_data_all <- function(token, id, profile_list, type, start, end){
+#' @description  Determines how many pages of data exist, pulls it all in as a singular table and joins back profile names and types. Uses global api_token created by sprout_auth()
+#' 
+#' @param customer_id customer_id returned from get_customer_id function, used in json payload
+#' @param customer_list list of profile_ids for all accounts, used in json payload
+#' @param type whether you're pulling profiles or posts data
+#' @param start start date, used in json payload
+#' @param end end date, used in json payload
+#' 
+#' @export
+#' @import httr
+#' @import dplyr
+#' @importFrom glue "glue"
+get_content_data_all <- function(customer_id, customer_list, type, start, end){
   
   #Get raw data for first page
-  contents <- get_content_data(token,id,profile_list,1,type, start, end, TRUE)
+  contents <- get_content_data(api_sprout,id,customer_list,1,type, start, end, TRUE)
   
   total_data <- contents[1]
   
@@ -16,7 +27,7 @@ get_content_data_all <- function(token, id, profile_list, type, start, end){
     seq <- seq(from=2, to=tot_pages, by=1)
     
     # Make API Call for each page of data. Smush into one table and add back page 1
-    total_data <- purrr::pmap_dfr(list(token,seq,type,start,end), get_content_data) %>% 
+    total_data <- purrr::pmap_dfr(list(api_sprout,seq,type,start,end), get_content_data) %>% 
       bind_rows(total_data)
     
   }

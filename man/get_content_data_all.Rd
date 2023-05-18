@@ -4,8 +4,19 @@
 \alias{get_content_data_all}
 \title{get_content_data_all}
 \usage{
-get_content_data_all(token, id, profile_list, type, start, end)
+get_content_data_all(customer_id, customer_list, type, start, end)
+}
+\arguments{
+\item{customer_id}{customer_id returned from get_customer_id function, used in json payload}
+
+\item{customer_list}{list of profile_ids for all accounts, used in json payload}
+
+\item{type}{whether you're pulling profiles or posts data}
+
+\item{start}{start date, used in json payload}
+
+\item{end}{end date, used in json payload}
 }
 \description{
-Determines how many pages of data exist, pulls it all in as a singular table and joins back profile names and types
+Determines how many pages of data exist, pulls it all in as a singular table and joins back profile names and types. Uses global api_token created by sprout_auth()
 }

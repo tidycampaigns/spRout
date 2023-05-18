@@ -13,5 +13,5 @@ get_customer_list(customer_id)
 a list of the profile ids
 }
 \description{
-Pull the list of profile_ids for all accounts to use in the body of future requests
+Pull the list of profile_ids for all accounts to use in the body of future requests. Uses global api_token created by sprout_auth()
 }

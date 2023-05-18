@@ -4,11 +4,8 @@
 \alias{get_customer_id}
 \title{get_customer_id}
 \usage{
-get_customer_id(token)
-}
-\arguments{
-\item{token}{API key}
+get_customer_id()
 }
 \description{
-Determine a members customer_id which is needed for future API calls
+Determine a members customer_id which is needed for future API calls. Uses global api_token created by sprout_auth()
 }

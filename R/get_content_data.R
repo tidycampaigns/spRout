@@ -1,7 +1,6 @@
 #' @title get_content_data
-#' @description Return contents of API call for one page worth of data
+#' @description Return contents of API call for one page worth of data. Uses global api_token created by sprout_auth()
 #' 
-#' @param token formatted API token
 #' @param customer_id customer_id returned from get_customer_id function, used in json payload
 #' @param customer_list list of profile_ids for all accounts, used in json payload
 #' @param page page number for data to pull, used in json payload
@@ -14,7 +13,7 @@
 #' @import httr
 #' @import dplyr
 #' @importFrom glue "glue"
-get_content_data <- function(token, customer_id, customer_list, page, type, start, end, total_pages = FALSE){
+get_content_data <- function(customer_id, customer_list, page, type, start, end, total_pages = FALSE){
   
   # Printing status
   print(glue("Getting raw page {page} data"))
@@ -26,7 +25,7 @@ get_content_data <- function(token, customer_id, customer_list, page, type, star
        ,body = body
        ,content_type_json()
        ,accept_json()
-       ,add_headers("Authorization" = token, "Content-Type" = "application/json"))
+       ,add_headers("Authorization" = api_sprout, "Content-Type" = "application/json"))
   
   rest_data2 <- content(rest_data)[1]$data %>% 
     tibble(newdata=`.`) %>% 

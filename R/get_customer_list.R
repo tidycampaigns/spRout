@@ -1,5 +1,5 @@
 #' @title get_customer_list
-#' @description Pull the list of profile_ids for all accounts to use in the body of future requests
+#' @description Pull the list of profile_ids for all accounts to use in the body of future requests. Uses global api_token created by sprout_auth()
 #' 
 #' @param customer_id customer_id returned from get_customer_id function
 #' 
@@ -13,7 +13,7 @@ get_customer_list <- function(customer_id){
   
   customer_url <- glue("https://api.sproutsocial.com/v1/{customer_id}/metadata/customer")
   
-  customer_raw <- GET(customer_url, add_headers("Authorization" = sprout_token))
+  customer_raw <- GET(customer_url, add_headers("Authorization" = api_sprout))
   
   # Turning JSON into readable data
   customer_data <- content(customer_raw) %>%
