@@ -18,7 +18,7 @@ get_content_data <- function(customer_id, customer_list, page, type, start, end,
   # Printing status
   print(glue("Getting raw page {page} data"))
   
-  body <- source(glue("vendors/sprout/{type}_metrics_json.r"), local = TRUE)[1] %>% as.character()
+  body <- source(glue("R/api_payload_json/{type}_metrics_json.r"), local = TRUE)[1] %>% as.character()
   
   # Make API call
   rest_data <- POST(url = glue::glue("https://api.sproutsocial.com/v1/{customer_id}/analytics/{type}")
