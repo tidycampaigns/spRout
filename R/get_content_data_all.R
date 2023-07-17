@@ -14,20 +14,20 @@
 get_content_data_all <- function(customer_id, customer_list, type, start, end){
   
   #Get raw data for first page
-  contents <- get_content_data(api_sprout,id,customer_list,1,type, start, end, TRUE)
+  contents <- get_content_data(id,customer_list,1,type, start, end, TRUE)
   
-  total_data <- contents[1]
+  total_data <- contents$data_content
   
-  tot_pages <- contents[2]
+  tot_pages <- contents$tot_pages
   
   #If there are more than 1 page of data, make API calls for the rest
   if(tot_pages > 1){
-    
+
     # Create a list for all the pages of data
     seq <- seq(from=2, to=tot_pages, by=1)
     
     # Make API Call for each page of data. Smush into one table and add back page 1
-    total_data <- purrr::pmap_dfr(list(api_sprout,seq,type,start,end), get_content_data) %>% 
+    total_data <- purrr::pmap_dfr(list(customer_id,customer_list,seq,type,start,end), get_content_data) %>% 
       bind_rows(total_data)
     
   }
@@ -40,12 +40,7 @@ get_content_data_all <- function(customer_id, customer_list, type, start, end){
       )
   }
   
-  #Adding back network type and profile name
-  total_data <- total_data %>% 
-    left_join(customer_data %>% select(customer_profile_id, profile_name=name, network_type)
-              ,by='customer_profile_id') 
-  
-  # removing periods from column names
+  # removing periods from column names to make databases happy
   colnames(total_data) <- gsub("\\.", "", colnames(total_data))
   
   return(total_data)
