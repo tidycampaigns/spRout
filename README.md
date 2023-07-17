@@ -1,5 +1,5 @@
 # Sprout Social API Sync
-last update: 3/21/2023
+last update: 7/17/2023
 
 ## Purpose
 The purpose of this program is to use Sprout Socials API to more directly and dynamically pull in member social network data. The program currently pulls both post and profile metric data, however it can be expanded in the future to pull in a lot more. [API Documentation](https://api.sproutsocial.com/docs/)
@@ -7,7 +7,7 @@ The purpose of this program is to use Sprout Socials API to more directly and dy
 ## Known Issues
 Posts metric data for the afternoon of 5/5/2021 aren't being returned when requested. Might want to exclude the whole day if you're pulling historical data.
 
-## Helper Functions
+## Functions
 Below contains a brief description of each helper function with their intended purpose.
 
 **get_customer_id:** Uses the provided API key to determine the customer_id. This ID is needed for the URL for all subsequent API calls.
@@ -25,15 +25,15 @@ In order to build the body of the API request dynamically, two files were create
 
 In future versions of this program these files can be updated to include more metrics. For this instance, I worked with a member to determine what they needed.
 
-## Calculated Metrics
-The following Calculated metrics were created based on API documentation
+## Future Calculated Metrics
+The following Calculated metrics can be created based on API documentation
 
 ### Posts
 **engagements:**  
 
-* **Twitter:** lifetime.likes + lifetime.comments_count + lifetime.shares_count + lifetime.post_link_clicks + lifetime.post_content_clicks_other + lifetime.engagements_other  
-* **Facebook:** lifetime.reactions + lifetime.comments_count + lifetime.shares_count + lifetime.post_link_clicks + lifetime.post_content_clicks_other  
-* **Instagram:** lifetime.likes + lifetime.comments_count + lifetime.comments_count  
+- **Twitter:** lifetime.likes + lifetime.comments_count + lifetime.shares_count + lifetime.post_link_clicks + lifetime.post_content_clicks_other + lifetime.engagements_other  
+- **Facebook:** lifetime.reactions + lifetime.comments_count + lifetime.shares_count + lifetime.post_link_clicks + lifetime.post_content_clicks_other  
+- **Instagram:** lifetime.likes + lifetime.comments_count + lifetime.comments_count  
 
 **follower_engagement_rate:** engagements/lifetime_snapshot.followers_count  
 **impression_engagement_rate:** engagements/lifetime.impressions  
@@ -42,9 +42,9 @@ The following Calculated metrics were created based on API documentation
 ### Profiles
 **engagements:**  
 
-* **Twitter:** likes + comments_count + shares_count + post_link_clicks + post_content_clicks_other + engagements_other  
-* **Facebook:** reactions + comments_count + shares_count + post_link_clicks + post_content_clicks_other  
-* **Instagram:** likes + comments_count + saves + story_replies  
+- **Twitter:** likes + comments_count + shares_count + post_link_clicks + post_content_clicks_other + engagements_other  
+- **Facebook:** reactions + comments_count + shares_count + post_link_clicks + post_content_clicks_other  
+- **Instagram:** likes + comments_count + saves + story_replies  
 
 **follower_engagement_rate:** engagements/lifetime_snapshot.followers_count  
 **impression_engagement_rate:** engagements/impressions  
@@ -54,7 +54,7 @@ The following Calculated metrics were created based on API documentation
 
 **profile_actions:**  
 
-* **Instagram:** email_contacts + get_directions_clicks + phone_call_clicks + text_message_clicks + website_clicks  
+- **Instagram:** email_contacts + get_directions_clicks + phone_call_clicks + text_message_clicks + website_clicks  
 
 ## Adding new fields to sync
 If you want to add more fields/metrics from the API to the sync the only files you will need to update are the ones with '_json' in the name. Make sure to pay attention to whether it is a field or a metric so you put it in the right place. The missing columns function should add the new fields/metrics to tables of existing syncs.
