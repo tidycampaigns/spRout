@@ -14,7 +14,7 @@
 get_content_data_all <- function(customer_id, customer_list, type, start, end){
   
   #Get raw data for first page
-  contents <- get_content_data(id,customer_list,1,type, start, end, TRUE)
+  contents <- get_content_data(customer_id,customer_list,1,type, start, end, TRUE)
   
   total_data <- contents$data_content
   
