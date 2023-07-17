@@ -9,6 +9,7 @@
 #' @import httr
 #' @import dplyr
 #' @importFrom glue "glue" "glue_collapse"
+#' @importFrom tidyr "unnest_longer" "unnest_wider"
 get_customer_list <- function(customer_id){
   
   customer_url <- glue("https://api.sproutsocial.com/v1/{customer_id}/metadata/customer")
